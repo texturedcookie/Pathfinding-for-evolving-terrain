@@ -1,5 +1,9 @@
 # import the pygame module
 import pygame
+import time
+#import numbers
+#import matplotlib.pyplot as plt
+#import pandas
 
 # import pygame.locals for easier 
 # access to key coordinates
@@ -35,11 +39,27 @@ square4 = Square()
 # Variable to keep our game loop running
 gameOn = True
 
+#Create a dictionary, the input size, and the amount of time
+runtimedict = {}
+inputsize = 0
+timer = 0
+
 # Our game loop
 while gameOn:
 	# for loop through the event queue
 	for event in pygame.event.get():
-		
+
+		#*Increase the input size starting at 1
+		inputsize= inputsize +1
+
+		#*Start the timer
+
+
+		#*If/When there is a collision between the path and the player,
+		#*Record the input size in the dictionary as well as the time
+		runtimedict[inputsize] = timer
+		print(runtimedict)
+
 		# Check for KEYDOWN event
 		if event.type == KEYDOWN:
 			
@@ -61,3 +81,5 @@ while gameOn:
 
 	# Update the display using flip
 	pygame.display.flip()
+
+
