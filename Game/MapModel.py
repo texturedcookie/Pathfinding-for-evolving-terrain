@@ -44,21 +44,17 @@ class MapModel:
             for x in range(0, self.width):
 
                 if self.player_pos == (x, y):
-                    block = Block(p.PLAYER)
-                    self.map[(x, y)] = block
+                    self.map[(x, y)] = Block(p.PLAYER)
 
                 elif self.enemy_pos == (x, y):
-                    block = Block(p.ENEMY)
-                    self.map[(x, y)] = block
+                    self.map[(x, y)] = Block(p.ENEMY)
 
                 # If the key exists in the obstacle map, the obstacle is added to the map
                 elif (x, y) in self.obstacle_map:
-                    block = Block(p.OBSTACLE)
-                    self.map[(x, y)] = block
+                    self.map[(x, y)] = Block(p.OBSTACLE)
 
                 else:
-                    block = Block(p.GROUND)
-                    self.map[(x, y)] = block
+                    self.map[(x, y)] = Block(p.GROUND)
 
     def is_within_bounds(self, pos_tuple):
         x = pos_tuple[0]
