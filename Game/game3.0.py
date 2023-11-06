@@ -90,7 +90,7 @@ def reconstruct_path(came_from, current):
 
 def game_loop():
     # obstacle length is the input size...
-    maze_object = Maze(15, 20, 3)
+    maze_object = Maze(rows, cols, 2)
     maze = maze_object.get_maze()
     path = astar(maze, (1, 1), (rows - 2, cols - 2))  # Use A* algorithm to find a path from start to goal
 
