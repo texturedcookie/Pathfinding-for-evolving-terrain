@@ -57,7 +57,7 @@ class Maze:
         return self.maze
 
     def get_obstacle_length(self):
-        return self.maze
+        return self.obstacle_length
 
 
 
