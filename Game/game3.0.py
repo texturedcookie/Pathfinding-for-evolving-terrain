@@ -26,7 +26,7 @@ WHITE = (255, 255, 255)
 RED = (255, 0, 0)
 GREEN = (0, 255, 0)
 BLUE = (0, 0, 255)
-
+BLACK = (0, 0, 0)
 
 # A* algorithm
 def heuristic(a, b):
@@ -94,6 +94,13 @@ runtimedict = {}
 inputsize = 0
 timer = 0
 
+
+def drawGrid():
+    blockSize = 40 #Set the size of the grid block
+    for x in range(0, width, blockSize):
+        for y in range(0, height, blockSize):
+            rect = pygame.Rect(x, y, blockSize, blockSize)
+            pygame.draw.rect(screen, BLACK, rect, 1)
 def game_loop():
     # obstacle length is the input size...
     maze_object = Maze(rows, cols)
@@ -177,6 +184,7 @@ def game_loop():
             screen.fill(WHITE)  # Clear the screen with a white background? There have some bugs here...
             for row in range(rows):  # Loop through each row
                 for col in range(cols):  # Loop through each cols
+                    drawGrid()
                     if maze[row][col] == 1:  # If there's a wall at this position
                         pygame.draw.rect(screen, BLUE,
                                          (col * tile_size[0], row * tile_size[1], tile_size[0], tile_size[1]))
