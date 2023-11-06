@@ -10,7 +10,7 @@ from Maze import Maze
 
 # Pygame
 pygame.init()
-width, height = 800, 600
+width, height = 1280, 720
 screen = pygame.display.set_mode((width, height))
 pygame.display.set_caption("Maze Game")
 font = pygame.font.Font(None, 36)
@@ -108,12 +108,13 @@ def game_loop():
     runtimedict = {}
     inputsize = 0
     timer = 0
+
+    player_pos =  [6, 10]  # Starting position of the player
+    enemy_pos = [8, 10]  # Starting position of the enemy
    
     try:
         while running:
-            if player_pos == enemy_pos:
-                print("INCREASING LENGTH")
-                maze_object.add_to_obstacle_length()
+           
             for event in pygame.event.get():
              #*Increase the input size starting at 1
                 maze_length = maze_object.get_obstacle_length()
@@ -127,6 +128,17 @@ def game_loop():
                 runtimedict[inputsize] = timer
                 print(runtimedict)
 
+                #*If the enemy finds the player,
+                #*Increase input size
+                if player_pos == enemy_pos: 
+                    print("INCREASING LENGTH")
+                    maze_object.add_to_obstacle_length()
+                    #*Reset enemy and player
+                    player_pos = [6, 10]  # Starting position of the player
+                    enemy_pos = [8, 10]  # Starting position of the enemy
+                    #*Reset the timer
+                    timer = 0
+             
                 if event.type == pygame.QUIT:
                     running = False  # Set running to False to exit the game loop
 
@@ -171,6 +183,10 @@ def game_loop():
             enemy_pos[1] * tile_size[0], enemy_pos[0] * tile_size[1], tile_size[0], tile_size[1]))  # red means enemy
             pygame.display.flip()  # Update the full display surface to the screen
             clock.tick(5)  # Limit the game to 5 frames per second (fps)
+
+           
+
+
     except Exception as e:
         print(f"An error occurred: {e}")
     finally:
