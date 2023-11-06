@@ -111,19 +111,21 @@ def game_loop():
    
     try:
         while running:
-
+            if player_pos == enemy_pos:
+                print("INCREASING LENGTH")
+                maze_object.add_to_obstacle_length()
             for event in pygame.event.get():
              #*Increase the input size starting at 1
-                maze_length = maze_object.get_obstacle_length
+                maze_length = maze_object.get_obstacle_length()
                 inputsize= maze_length
-                print (inputsize)
+                
 		        #*Start the timer
-                timer = time.time();
+                timer = time.time()
 
 		        #*If/When there is a collision between the path and the player,
 		        #*Record the input size in the dictionary as well as the time
                 runtimedict[inputsize] = timer
-                #print(runtimedict)
+                print(runtimedict)
 
                 if event.type == pygame.QUIT:
                     running = False  # Set running to False to exit the game loop
