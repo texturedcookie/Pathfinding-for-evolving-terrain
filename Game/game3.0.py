@@ -18,8 +18,8 @@ font = pygame.font.Font(None, 36)
 # mazesize
 tile_size = (40, 40)
 rows, cols = height // tile_size[1], width // tile_size[0]
-player_pos = [6, 10]  # Starting position of the player
-enemy_pos = [8, 10]  # Starting position of the enemy
+#player_pos = [6, 10]  # Starting position of the player
+#enemy_pos = [8, 10]  # Starting position of the enemy
 
 # colordef
 WHITE = (255, 255, 255)
@@ -109,8 +109,8 @@ def game_loop():
     inputsize = 0
     timer = 0
 
-    player_pos =  [6, 10]  # Starting position of the player
-    enemy_pos = [8, 10]  # Starting position of the enemy
+    player_pos =  [8, 16]  # Starting position of the player
+    enemy_pos = [10, 16]  # Starting position of the enemy
    
     try:
         while running:
@@ -134,8 +134,8 @@ def game_loop():
                     print("INCREASING LENGTH")
                     maze_object.add_to_obstacle_length()
                     #*Reset enemy and player
-                    player_pos = [6, 10]  # Starting position of the player
-                    enemy_pos = [8, 10]  # Starting position of the enemy
+                    player_pos = [8, 16]  # Starting position of the player
+                    enemy_pos = [10, 16]  # Starting position of the enemy
                     #*Reset the timer
                     timer = 0
              

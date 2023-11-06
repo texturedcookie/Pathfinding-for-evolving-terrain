@@ -22,7 +22,7 @@ class Maze:
         self.cols = cols
         self.maze = np.zeros((rows, cols), dtype=int)
         self.obstacle_length = 1
-        self.setup_obstacle((7, 9))
+        self.setup_obstacle((9, 16))
 
     def setup_obstacle(self, center_pos):
         self.obstacle_center = center_pos
@@ -42,6 +42,12 @@ class Maze:
 
     def get_maze(self):
         return self.maze
+
+    def get_maze_row(self):
+        return self.rows
+
+    def get_maze_cols(self):
+        return self.cols
 
     def get_obstacle_length(self):
         return self.obstacle_length
