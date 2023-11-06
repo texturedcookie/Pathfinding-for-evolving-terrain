@@ -96,7 +96,7 @@ timer = 0
 
 def game_loop():
     # obstacle length is the input size...
-    maze_object = Maze(rows, cols, 2)
+    maze_object = Maze(rows, cols)
     maze = maze_object.get_maze()
     path = astar(maze, (1, 1), (rows - 2, cols - 2))  # Use A* algorithm to find a path from start to goal
 

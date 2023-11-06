@@ -17,37 +17,28 @@ class Maze:
     # Maze Array
     maze = None
 
-    def __init__(self, rows, cols, obstacle_length):
+    def __init__(self, rows, cols):
         self.rows = rows
         self.cols = cols
         self.maze = np.zeros((rows, cols), dtype=int)
-        self.obstacle_length = obstacle_length
+        self.obstacle_length = 1
         self.setup_obstacle((7, 9))
-        self.add_to_obstacle_length()
 
     def setup_obstacle(self, center_pos):
         self.obstacle_center = center_pos
+        self.obstacle_left = center_pos[1]
+        self.obstacle_right = center_pos[1]
         self.maze[center_pos[0]][center_pos[1]] = 1
 
     # original length is always 3
     # length to be added
     def add_to_obstacle_length(self):
-        right = self.obstacle_center[1] + 1
-        left = self.obstacle_center[1] - 1
-        self.obstacle_right = (self.obstacle_center[0], right)
-        self.obstacle_left = (self.obstacle_center[0], left)
+        self.obstacle_left = self.obstacle_left - 1
+        self.obstacle_right = self.obstacle_right + 1
+        self.maze[self.obstacle_center[0]][self.obstacle_left] = 1
+        self.maze[self.obstacle_center[0]][self.obstacle_right] = 1
+        self.obstacle_length += 2
 
-        # loop to set everything up
-        i = 0
-        temp_length = self.obstacle_length
-        while i <= temp_length:
-            self.maze[self.obstacle_center[0]][right] = 1
-            right += 1
-            i += 1
-            self.maze[self.obstacle_center[0]][left] = 1
-            left -= 1
-            i += 1
-            self.obstacle_length += 2
 
     def get_maze(self):
         return self.maze
