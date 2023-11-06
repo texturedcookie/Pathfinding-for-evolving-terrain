@@ -1,6 +1,9 @@
 import pygame
 import numpy as np
 import random
+import time
+#import numbers
+#import matplotlib.pyplot as plt
 from heapq import heappush, heappop
 
 from Maze import Maze
@@ -86,7 +89,10 @@ def reconstruct_path(came_from, current):
         # We then return the reversed path, starting from the start node and ending at the goal node.
     return total_path[::-1]  # Reverse the path to get the correct order from start to goal
 
-
+#Declare Timer variables
+runtimedict = {}
+inputsize = 0
+timer = 0
 
 def game_loop():
     # obstacle length is the input size...
@@ -98,9 +104,27 @@ def game_loop():
     running = True  # Set the running flag to True to start the game loop
     step_size = 2  # Define the step size for player movement
 
+    #Declare Timer variables
+    runtimedict = {}
+    inputsize = 0
+    timer = 0
+   
     try:
         while running:
+
             for event in pygame.event.get():
+             #*Increase the input size starting at 1
+                inputsize= inputsize +2
+                #maze_object.get_obstacle_length
+
+		        #*Start the timer
+                timer = time.time();
+
+		        #*If/When there is a collision between the path and the player,
+		        #*Record the input size in the dictionary as well as the time
+                runtimedict[inputsize] = timer
+                print(runtimedict)
+
                 if event.type == pygame.QUIT:
                     running = False  # Set running to False to exit the game loop
 
