@@ -3,7 +3,7 @@ import numpy as np
 import random
 import time
 #import numbers
-#import matplotlib.pyplot as plt
+import matplotlib.pyplot as plt
 from heapq import heappush, heappop
 
 from Maze import Maze
@@ -27,6 +27,8 @@ RED = (255, 0, 0)
 GREEN = (0, 255, 0)
 BLUE = (0, 0, 255)
 BLACK = (0, 0, 0)
+
+global_runtimedict = {}
 
 # A* algorithm
 def heuristic(a, b):
@@ -89,10 +91,10 @@ def reconstruct_path(came_from, current):
         # We then return the reversed path, starting from the start node and ending at the goal node.
     return total_path[::-1]  # Reverse the path to get the correct order from start to goal
 
-#Declare Timer variables
-runtimedict = {}
-inputsize = 0
-timer = 0
+ #Declare Timer variables
+# runtimedict = {}
+# inputsize = 0
+# timer = 0
 
 
 def drawGrid():
@@ -101,6 +103,7 @@ def drawGrid():
         for y in range(0, height, blockSize):
             rect = pygame.Rect(x, y, blockSize, blockSize)
             pygame.draw.rect(screen, BLACK, rect, 1)
+            
 def game_loop():
     # obstacle length is the input size...
     maze_object = Maze(rows, cols)
@@ -112,7 +115,7 @@ def game_loop():
     step_size = 2  # Define the step size for player movement
 
     #Declare Timer variables
-    runtimedict = {}
+    # global_runtimedict = {}
     inputsize = 0
     startimer = 0
 
@@ -139,8 +142,8 @@ def game_loop():
                     #print(endtimer)
 
                     #timer = endtimer - starttimer
-                    runtimedict[inputsize] = endtimer - starttimer
-                    print(runtimedict)
+                    global_runtimedict[inputsize] = endtimer - starttimer
+                    print(global_runtimedict)
 
 
                     
@@ -210,3 +213,21 @@ def game_loop():
 
 if __name__ == "__main__":
     game_loop()
+
+
+    # Extract the input sizes and runtimes from the runtimedict dictionary
+    input_x = list(global_runtimedict.keys())
+    print(input_x)
+    runtimesy = list(global_runtimedict.values())
+    print(runtimesy)
+    # Create a line graph
+    plt.figure(figsize=(10, 6))
+    plt.plot(input_x, runtimesy, marker='o', linestyle='-', color='b')
+    plt.title('Runtime vs Input Size')
+    plt.xlabel('Input Size')
+    plt.ylabel('Runtime (ns)')
+    plt.grid(True)
+
+    # Display the graph
+    plt.grid()
+    plt.show()
