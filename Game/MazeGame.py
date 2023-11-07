@@ -177,6 +177,8 @@ def game_loop():
                     enemy_pos = [10, 16]
                     maze_object.add_to_obstacle_length()
                     input_size = maze_object.get_obstacle_length()
+
+                    start_timer = time.perf_counter()
                 if maze_object.get_obstacle_length() == 1:
                     input_size = maze_object.get_obstacle_length()
                     start_timer = time.perf_counter()
@@ -185,6 +187,7 @@ def game_loop():
                 if event.type == pygame.QUIT:
                     running = False  # Set running too false to exit the game loop
 
+            # turn on for random movement, turn off for no movement.
             player_movement()
             enemy_movement_logic()
 
