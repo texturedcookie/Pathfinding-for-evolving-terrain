@@ -66,7 +66,7 @@ def astar(maze, start, goal):
                          (current[0], current[1] - 1), (current[0], current[1] + 1)]:
             # The neighbor above/below/left/right to the current node
 
-            # Check if the neighbor is within the maze boundaries and not a wall (maze value 1)        
+            # Check if the neighbor is within the maze boundaries and not a wall (maze value 1)
             if 0 <= neighbor[0] < len(maze) and 0 <= neighbor[1] < len(maze[0]):
                 # If the neighbor is a wall or in the closed set, skip it
                 if maze[neighbor[0]][neighbor[1]] == 1 or neighbor in closed_set:
@@ -93,7 +93,7 @@ def reconstruct_path(came_from, current):
         current = came_from[current]  # update the current node to the one we came from
         total_path.append(current)  # and add it to the path
 
-        # Once we've reached the start node, it won't be in the came_from map, and the loop will end. 
+        # Once we've reached the start node, it won't be in the came_from map, and the loop will end.
         # We then return the reversed path, starting from the start node and ending at the goal node.
     return total_path[::-1]  # Reverse the path to get the correct order from start to goal
 
