@@ -131,18 +131,18 @@ def game_loop():
                 inputsize= maze_length
                 
 		        #*Start the timer
-                starttimer = time.perf_counter_ns()
+                #starttimer = time.perf_counter_ns()
                 #print(starttimer)
 
                
                 #*If the enemy finds the player,
                 #*Increase input size
                 if player_pos == enemy_pos: 
-                    endtimer = time.perf_counter_ns()
+                    endtimer = time.perf_counter()
                     #print(endtimer)
 
                     #timer = endtimer - starttimer
-                    global_runtimedict[inputsize] = endtimer - starttimer
+                    global_runtimedict[inputsize] = endtimer
                     print(global_runtimedict)
 
 
@@ -152,7 +152,7 @@ def game_loop():
                     player_pos = [8, 16]  # Starting position of the player
                     enemy_pos = [10, 16]  # Starting position of the enemy
                     #*Reset the timer
-                    starttimer = 0
+                    #endtimer = 0
              
                 if event.type == pygame.QUIT:
                     running = False  # Set running to False to exit the game loop
@@ -187,11 +187,12 @@ def game_loop():
             screen.fill(WHITE)  # Clear the screen with a white background? There have some bugs here...
             for row in range(rows):  # Loop through each row
                 for col in range(cols):  # Loop through each cols
-                    drawGrid()
                     if maze[row][col] == 1:  # If there's a wall at this position
                         pygame.draw.rect(screen, BLUE,
                                          (col * tile_size[0], row * tile_size[1], tile_size[0], tile_size[1]))
                         # Draw a blue rectangle (wall) on the screen at the corresponding position
+
+            drawGrid()
 
             pygame.draw.rect(screen, GREEN, (player_pos[1] * tile_size[0], player_pos[0] * tile_size[1], tile_size[0],
                                              tile_size[1]))  # green means player

@@ -30,8 +30,7 @@ class Maze:
         self.obstacle_right = center_pos[1]
         self.maze[center_pos[0]][center_pos[1]] = 1
 
-    # original length is always 3
-    # length to be added
+    # length added to the obstacle
     def add_to_obstacle_length(self):
         self.obstacle_left = self.obstacle_left - 1
         self.obstacle_right = self.obstacle_right + 1
