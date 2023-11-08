@@ -171,7 +171,7 @@ def game_loop():
                     end_timer = time.perf_counter()
 
                     global_run_time[input_size] = end_timer - start_timer
-                    print(global_run_time)
+                   # print(global_run_time)
 
                     player_pos = [8, 16]
                     enemy_pos = [10, 16]
@@ -205,12 +205,11 @@ if __name__ == "__main__":
 
     # Constants
     branching_factor = 4
-    input_sizes = [1, 3, 5, 7, 9, 11, 13, 15, 17, 19, 21, 23, 25, 27, 29, 31]
+    input_sizing = [1, 3, 5, 7, 9, 11, 13, 15, 17, 19, 21, 23, 25, 27, 29, 31]
 
     # Theoretical runtime estimation
-    theoretical_runtimes = [branching_factor ** depth for depth in input_sizes]
-
-
+    theoretical_runtimes = [0.001, 0.01, 0.05, 0.16, 0.31, 0.50, 0.74, 1.02, 1.34, 1.70, 2.11, 2.57, 3.09, 3.67, 4.31, 5.01]
+   
     # Extract the input sizes and runtimes from the run time dictionary
     input_x = list(global_run_time.keys())
     print(input_x)
@@ -219,10 +218,11 @@ if __name__ == "__main__":
     # Create a line graph
     plt.figure(figsize=(10, 6))
     plt.plot(input_x, runtimesy, marker='o', linestyle='-', color='b', label='Emperical')
-    plt.plot(input_sizes, theoretical_runtimes, marker='o', linestyle='-', color='r', label='Theoretical')
+    plt.plot(input_sizing, theoretical_runtimes, marker='o', linestyle='-', color='r', label='Theoretical')
     plt.title('Runtime vs Input Size')
     plt.xlabel('Input Size')
     plt.ylabel('Runtime (Seconds)')
+    plt.legend()
     plt.grid(True)
 
     # Display the graph
