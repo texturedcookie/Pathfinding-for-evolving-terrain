@@ -196,9 +196,20 @@ def game_loop():
     finally:
         pygame.quit()
 
+def quadratic_runtime(input_size):
+    return input_size ** 2
+
 
 if __name__ == "__main__":
     game_loop()
+
+    # Constants
+    branching_factor = 4
+    input_sizes = [1, 3, 5, 7, 9, 11, 13, 15, 17, 19, 21, 23, 25, 27, 29, 31]
+
+    # Theoretical runtime estimation
+    theoretical_runtimes = [branching_factor ** depth for depth in input_sizes]
+
 
     # Extract the input sizes and runtimes from the run time dictionary
     input_x = list(global_run_time.keys())
@@ -207,7 +218,8 @@ if __name__ == "__main__":
     print(runtimesy)
     # Create a line graph
     plt.figure(figsize=(10, 6))
-    plt.plot(input_x, runtimesy, marker='o', linestyle='-', color='b')
+    plt.plot(input_x, runtimesy, marker='o', linestyle='-', color='b', label='Emperical')
+    plt.plot(input_sizes, theoretical_runtimes, marker='o', linestyle='-', color='r', label='Theoretical')
     plt.title('Runtime vs Input Size')
     plt.xlabel('Input Size')
     plt.ylabel('Runtime (Seconds)')
