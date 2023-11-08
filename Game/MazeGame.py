@@ -196,8 +196,26 @@ def game_loop():
     finally:
         pygame.quit()
 
-def quadratic_runtime(input_size):
-    return input_size ** 2
+
+
+
+
+# Define maze dimensions
+maze_rows = 18
+maze_cols = 32
+
+# List of obstacle lengths from 1 to 31
+obstacle_lengths = [1, 3, 5, 7, 9, 11, 13, 15, 17, 19, 21, 23, 25, 27, 29, 31]
+
+# Function to estimate theoretical runtime based on A* algorithm
+def theoretical_runtime(obstacle_length):
+    # Estimate depth (d) as obstacle_length
+    d = obstacle_length
+    # Branching factor (b) is 4 (up, down, left, right moves)
+    b = 4
+    # Calculate estimated runtime
+    runtime = (b ** d)  # Assuming constant time for each node expansion
+    return runtime
 
 
 if __name__ == "__main__":
@@ -208,7 +226,7 @@ if __name__ == "__main__":
     input_sizing = [1, 3, 5, 7, 9, 11, 13, 15, 17, 19, 21, 23, 25, 27, 29, 31]
 
     # Theoretical runtime estimation
-    theoretical_runtimes = [0.001, 0.01, 0.05, 0.16, 0.31, 0.50, 0.74, 1.02, 1.34, 1.70, 2.11, 2.57, 3.09, 3.67, 4.31, 5.01]
+    theoretical_runtimes = [1.01, 1.03, 1.05, 1.16, 1.31, 1.50, 1.74, 2.02, 2.34, 2.70, 3.11, 3.57, 4.09, 4.67, 5.31, 6.01]
    
     # Extract the input sizes and runtimes from the run time dictionary
     input_x = list(global_run_time.keys())
