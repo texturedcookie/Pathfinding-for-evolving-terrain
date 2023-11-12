@@ -188,7 +188,7 @@ def game_loop():
                     running = False  # Set running too false to exit the game loop
 
             # turn on for random movement, turn off for no movement.
-            player_movement()
+            # player_movement()
             enemy_movement_logic()
 
     except Exception as e:
